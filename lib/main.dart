@@ -1,11 +1,12 @@
 import 'package:financial_freedom/screens/expense_form/expense_form.screen.dart';
+import 'package:financial_freedom/screens/home/home.screen.dart';
 import 'package:financial_freedom/screens/main/main.screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 void main() {
   runApp(GetMaterialApp(
-    home: ExpenseFormScreen(),
+    home: const MainScreen(),
     theme: ThemeData(
         textTheme: const TextTheme().copyWith(
             headline1: const TextStyle(
@@ -31,6 +32,14 @@ void main() {
           surface: Colors.white,
           onSurface: Colors.white,
         )),
+    initialRoute: '/',
+    getPages: [
+      GetPage(name: MainScreen.routeName, page: () => const MainScreen()),
+      GetPage(
+        name: ExpenseFormScreen.routeName,
+        page: () => ExpenseFormScreen(),
+      )
+    ],
   ));
 }
 

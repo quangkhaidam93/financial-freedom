@@ -2,6 +2,7 @@ import 'package:financial_freedom/screens/home/home.screen.dart';
 import 'package:flutter/material.dart';
 
 class MainScreen extends StatefulWidget {
+  static const routeName = '/';
   const MainScreen({Key? key}) : super(key: key);
 
   @override

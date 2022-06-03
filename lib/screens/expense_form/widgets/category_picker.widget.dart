@@ -111,7 +111,8 @@ class _CategoryPickerState extends State<_CategoryPicker> {
             ),
           ),
           widget.formFieldState.hasError
-              ? Text(widget.formFieldState.errorText!)
+              ? Text(widget.formFieldState.errorText!,
+                  style: TextStyle(color: Theme.of(context).colorScheme.error))
               : const SizedBox()
         ],
       ),

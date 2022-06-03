@@ -5,6 +5,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class ExpenseFormScreen extends StatelessWidget {
+  static const routeName = '/expense-form';
   final _formKey = GlobalKey<FormState>();
   final _data = ExpenseTransaction();
 

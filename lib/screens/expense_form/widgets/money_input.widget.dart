@@ -79,7 +79,7 @@ class _MoneyInputState extends State<MoneyInput> {
   Widget build(BuildContext context) {
     return SizedBox(
       width: double.infinity,
-      height: 100,
+      height: 120,
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.center,
         mainAxisAlignment: MainAxisAlignment.center,
@@ -127,7 +127,14 @@ class _MoneyInputState extends State<MoneyInput> {
                   child: const Text('VNĐ',
                       style: TextStyle(
                           color: Colors.white, fontWeight: FontWeight.bold)),
-                )
+                ),
+                widget.formFieldState.hasError
+                    ? FittedBox(
+                        child: Text(widget.formFieldState.errorText!,
+                            style: TextStyle(
+                                color: Theme.of(context).colorScheme.error)),
+                      )
+                    : const SizedBox()
               ],
             ),
           ),
