@@ -19,3 +19,17 @@ class ExpenseCategory {
     ratio = spent / total;
   }
 }
+
+enum ExpenseCategoryType {
+  food,
+  fashion,
+  transportation,
+  investment,
+  accessories,
+  entertainment,
+  service,
+  healthcare,
+  housing,
+  family,
+  debtAndInterest
+}

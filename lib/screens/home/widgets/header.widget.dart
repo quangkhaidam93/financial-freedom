@@ -1,4 +1,6 @@
+import 'package:financial_freedom/screens/expense_form/expense_form.screen.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class HomeHeader extends StatelessWidget {
   const HomeHeader({Key? key}) : super(key: key);
@@ -37,7 +39,9 @@ class HomeHeader extends StatelessWidget {
         Align(
           alignment: Alignment.centerLeft,
           child: ElevatedButton.icon(
-            onPressed: () {},
+            onPressed: () {
+              Get.toNamed(ExpenseFormScreen.routeName);
+            },
             icon: const Icon(Icons.add),
             label: const Text('Add Expense'),
             style: ButtonStyle(
