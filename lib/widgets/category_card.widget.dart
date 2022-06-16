@@ -1,5 +1,13 @@
+// ignore_for_file: constant_identifier_names
+
 import 'package:financial_freedom/models/expense_category.model.dart';
+import 'package:financial_freedom/utils/money_formatter.dart';
+import 'package:financial_freedom/utils/number_transformer.dart';
 import 'package:flutter/material.dart';
+
+const double THRESHOLD_FOR_DISPLAY_PERCENTAGE_BLOCK = 0.4;
+const double THRESHOLD_FOR_DISPLAY_PERCENTAGE_TEXT = 0.2;
+const double HEIGHT_FACTOR = 1;
 
 class CategoryCard extends StatelessWidget {
   final ExpenseCategory category;
@@ -53,7 +61,7 @@ class CategoryCard extends StatelessWidget {
                           fontWeight: FontWeight.bold, fontSize: 16),
                     ),
                     Text(
-                      '${category.spent}',
+                      NumberTransformer.transformPercentage(category.ratio!),
                       style: TextStyle(
                           color: category.darkColor,
                           fontWeight: FontWeight.bold),
@@ -77,8 +85,8 @@ class CategoryCard extends StatelessWidget {
                             borderRadius: BorderRadius.circular(20)),
                       ),
                       FractionallySizedBox(
-                        heightFactor: 1,
-                        widthFactor: 0.7,
+                        heightFactor: HEIGHT_FACTOR,
+                        widthFactor: category.ratio,
                         child: Container(
                           padding: const EdgeInsets.symmetric(horizontal: 12),
                           decoration: BoxDecoration(
@@ -90,15 +98,20 @@ class CategoryCard extends StatelessWidget {
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
-                              Text('${category.ratio}'),
-                              Container(
-                                width: 30,
-                                height: 30,
-                                decoration: const BoxDecoration(
-                                    shape: BoxShape.circle,
-                                    color: Colors.white),
-                                child: const Icon(Icons.view_week, size: 16),
-                              )
+                              if (category.ratio! >=
+                                  THRESHOLD_FOR_DISPLAY_PERCENTAGE_TEXT)
+                                Text(NumberTransformer.transformPercentage(
+                                    category.ratio!)),
+                              if (category.ratio! >=
+                                  THRESHOLD_FOR_DISPLAY_PERCENTAGE_BLOCK)
+                                Container(
+                                  width: 30,
+                                  height: 30,
+                                  decoration: const BoxDecoration(
+                                      shape: BoxShape.circle,
+                                      color: Colors.white),
+                                  child: const Icon(Icons.view_week, size: 16),
+                                )
                             ],
                           ),
                         ),
@@ -113,9 +126,12 @@ class CategoryCard extends StatelessWidget {
                           style: const TextStyle(
                               fontSize: 14, color: Colors.black),
                           children: [
-                            TextSpan(text: 'Spent ${category.spent} from '),
                             TextSpan(
-                                text: '${category.total}',
+                                text:
+                                    'Spent ${MoneyFormatter.transformMoneyToVNCurrency(category.spent.toStringAsFixed(0))}VNĐ in '),
+                            TextSpan(
+                                text:
+                                    '${MoneyFormatter.transformMoneyToVNCurrency(category.total.toStringAsFixed(0))}VNĐ',
                                 style: TextStyle(
                                     fontWeight: FontWeight.bold,
                                     color:

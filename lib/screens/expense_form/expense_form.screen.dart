@@ -1,13 +1,14 @@
-import 'package:financial_freedom/models/expense_transaction.model.dart';
+import 'package:financial_freedom/models/expense_tx.model.dart';
 import 'package:financial_freedom/screens/expense_form/widgets/category_picker.widget.dart';
 import 'package:financial_freedom/screens/expense_form/widgets/money_input.widget.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class ExpenseFormScreen extends StatelessWidget {
   static const routeName = '/expense-form';
   final _formKey = GlobalKey<FormState>();
-  final _data = ExpenseTransaction();
+  final _data = ExpenseTx();
 
   ExpenseFormScreen({Key? key}) : super(key: key);
 
@@ -82,14 +83,13 @@ class ExpenseFormScreen extends StatelessWidget {
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       floatingActionButton: ElevatedButton(
-        onPressed: () {
+        onPressed: () async {
           if (_formKey.currentState!.validate()) {
             _formKey.currentState!.save();
-            // If the form is valid, display a snackbar. In the real world,
-            // you'd often call a server or save the information in a database.
-            ScaffoldMessenger.of(context).showSnackBar(
-              const SnackBar(content: Text('Processing Data')),
-            );
+
+            await _data.saveExpenseTx();
+
+            Get.back();
           }
         },
         child: const Text('Confirm'),

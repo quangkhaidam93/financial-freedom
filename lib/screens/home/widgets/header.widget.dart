@@ -1,9 +1,12 @@
 import 'package:financial_freedom/screens/expense_form/expense_form.screen.dart';
+import 'package:financial_freedom/screens/home/expense_categories.controller.dart';
+import 'package:financial_freedom/utils/money_formatter.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class HomeHeader extends StatelessWidget {
-  const HomeHeader({Key? key}) : super(key: key);
+  HomeHeader({Key? key}) : super(key: key);
+  final ExpenseCategoriesController expenseCategoriesController = Get.find();
 
   @override
   Widget build(BuildContext context) {
@@ -23,8 +26,12 @@ class HomeHeader extends StatelessWidget {
           margin: const EdgeInsets.symmetric(vertical: 32),
           child: Row(
             children: [
-              Text('1.000.000 VNĐ',
-                  style: Theme.of(context).textTheme.headline1),
+              Obx(
+                () => Text(
+                    MoneyFormatter.transformMoneyToVNCurrency(
+                        expenseCategoriesController.total.toStringAsFixed(0)),
+                    style: Theme.of(context).textTheme.headline1),
+              ),
               Container(
                 padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
                 margin: const EdgeInsets.symmetric(horizontal: 8),

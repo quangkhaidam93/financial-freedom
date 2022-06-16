@@ -1,0 +1,46 @@
+{
+  "project_info": {
+    "project_number": "238090080036",
+    "project_id": "financial-freedom-2022",
+    "storage_bucket": "financial-freedom-2022.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:238090080036:android:0d1aaf6c2b928a839e2db1",
+        "android_client_info": {
+          "package_name": "com.khaidam.financial_freedom"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "238090080036-api021b9m498rb7s02838cg6j3n2elnb.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCv_xmelFiB5qPfKF4v9OGWNKco9Db0zaA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "238090080036-api021b9m498rb7s02838cg6j3n2elnb.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "238090080036-e86vc9nibkru49c2kab10sd7aldrv7dr.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.financialFreedom"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
