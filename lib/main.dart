@@ -1,6 +1,5 @@
 import 'package:financial_freedom/firebase_options.dart';
 import 'package:financial_freedom/screens/expense_form/expense_form.screen.dart';
-import 'package:financial_freedom/screens/home/home.screen.dart';
 import 'package:financial_freedom/screens/main/main.screen.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
