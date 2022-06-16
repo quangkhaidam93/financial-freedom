@@ -61,7 +61,8 @@ class _CategoryPickerState extends State<_CategoryPicker> {
                               this.selectedIndex = selectedIndex;
                             });
                             widget.formFieldState.didChange(
-                                transformToExpanseCategoryType(selectedIndex));
+                                transformIntToExpanseCategoryType(
+                                    selectedIndex));
                           },
                           children: expenseCategories
                               .map((c) => Center(

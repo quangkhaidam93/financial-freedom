@@ -1,5 +1,4 @@
-import 'dart:ui';
-
+import 'package:financial_freedom/utils/money_formatter.dart';
 import 'package:flutter/material.dart';
 
 class MoneyInputFormField extends FormField<String> {
@@ -34,6 +33,7 @@ class MoneyInput extends StatefulWidget {
 class _MoneyInputState extends State<MoneyInput> {
   late TextEditingController _controller;
   String money = '';
+  String moneyForDisplay = '';
 
   @override
   void initState() {
@@ -42,37 +42,39 @@ class _MoneyInputState extends State<MoneyInput> {
   }
 
   void updateMoney(String newMoney) {
+    newMoney = MoneyFormatter.transformMoneyToNormalString(newMoney);
     setState(() {
       money = newMoney;
+      if (newMoney != '') {
+        moneyForDisplay = MoneyFormatter.transformMoneyToVNCurrency(newMoney);
+      } else {
+        moneyForDisplay = '0';
+      }
     });
-    widget.formFieldState.didChange(newMoney);
+    var offset = moneyForDisplay.length > 1 ? moneyForDisplay.length - 1 : 1;
+    _controller.value = TextEditingValue(
+      text: moneyForDisplay,
+      selection: TextSelection.collapsed(offset: offset),
+    );
+    widget.formFieldState.didChange(money);
   }
 
-  void increaseMoney() {
+  void changeMoney(bool increase) {
     int current;
     if (_controller.text == '') {
       current = 0;
     } else {
-      current = int.parse(_controller.text);
+      current = int.parse(
+          MoneyFormatter.transformMoneyToNormalString(_controller.text));
     }
-    updateMoney((current + 1).toString());
-    _controller.text = (current + 1).toString();
-    _controller.selection = TextSelection.fromPosition(
-        TextPosition(offset: _controller.text.length));
-  }
 
-  void decreaseMoney() {
-    int current;
-    if (_controller.text == '') {
-      current = 0;
+    if (increase) {
+      current += 1;
     } else {
-      current = int.parse(_controller.text);
+      if (current == 0) return; // EXPLAIN: Money cannot be negative
+      current -= 1;
     }
-    if (current == 0) return;
-    updateMoney((current - 1).toString());
-    _controller.text = (current - 1).toString();
-    _controller.selection = TextSelection.fromPosition(
-        TextPosition(offset: _controller.text.length));
+    updateMoney(current.toString());
   }
 
   @override
@@ -97,7 +99,7 @@ class _MoneyInputState extends State<MoneyInput> {
                 )
               ],
             ),
-            onTap: () => decreaseMoney(),
+            onTap: () => changeMoney(false),
           ),
           Container(
             margin: const EdgeInsets.symmetric(horizontal: 16),
@@ -151,7 +153,7 @@ class _MoneyInputState extends State<MoneyInput> {
                   )
                 ],
               ),
-              onTap: () => increaseMoney())
+              onTap: () => changeMoney(true))
         ],
       ),
     );
