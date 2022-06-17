@@ -1,7 +1,7 @@
 import 'package:financial_freedom/constants/category.dart';
 import 'package:financial_freedom/models/expense_category.model.dart';
 import 'package:financial_freedom/utils/transformValueToEnum.dart';
-import 'package:financial_freedom/utils/transfromEnumToValue.dart';
+import 'package:financial_freedom/utils/transformEnumToValue.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 

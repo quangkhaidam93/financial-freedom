@@ -1,4 +1,5 @@
 import 'package:financial_freedom/screens/home/home.screen.dart';
+import 'package:financial_freedom/screens/tx_history/tx_history.screen.dart';
 import 'package:flutter/material.dart';
 
 class MainScreen extends StatefulWidget {
@@ -23,6 +24,7 @@ class _MainScreenState extends State<MainScreen> {
       case 0:
         return const HomeScreen();
       case 1:
+        return const TxHistoryScreen();
       case 2:
       case 3:
         return const Center(child: Text('Other Page'));
