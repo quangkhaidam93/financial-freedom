@@ -12,7 +12,8 @@
     "@linaria/babel-preset": "^5.0.3",
     "@linaria/core": "^5.0.2",
     "@linaria/react": "^5.0.3",
-    "preact": "^10.16.0"
+    "preact": "^10.16.0",
+    "preact-router": "^4.1.2"
   },
   "devDependencies": {
     "@babel/preset-react": "^7.22.15",
